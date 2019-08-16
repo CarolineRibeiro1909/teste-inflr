@@ -22,7 +22,7 @@ export class ApiService {
     })
   };
 
-    public getArtigos() {
+    public getArticles() {
     return new Promise(resolve => {
       this.http.get(this.articles).subscribe(data => {
         resolve(data);
@@ -33,7 +33,7 @@ export class ApiService {
     });
   }
 
-   public postArtigo(data) {
+   public postArticles(data) {
     let headers = new HttpHeaders();
     headers.append("Content-Type", "application/json");
     return new Promise((resolve, reject) => {

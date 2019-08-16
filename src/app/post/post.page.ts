@@ -34,7 +34,7 @@ export class PostPage {
 
 
   getArticles() {
-    this.api.getArtigos()
+    this.api.getArticles()
       .then((result: any[]) => {
         this.articles = result;
       });

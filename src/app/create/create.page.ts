@@ -24,7 +24,7 @@ export class CreatePage {
       "password": this.password
     };
     console.log('teste' + data)
-    this.api.postArtigo(data).then((result) => {
+    this.api.postAccount(data).then((result) => {
       let toast = this.toastCtrl.create({ message: 'Usuário cadastrado com sucesso.', duration: 3000 });
       toast.present();
     })
