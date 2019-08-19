@@ -33,7 +33,7 @@ export class ApiService {
     });
   }
 
-   public postArticles(data) {
+   public postAccount(data) {
     let headers = new HttpHeaders();
     headers.append("Content-Type", "application/json");
     return new Promise((resolve, reject) => {
@@ -63,7 +63,6 @@ export class ApiService {
 
     public loginApp(data) {
     let headers = new HttpHeaders();
-    headers.append("Authorization", "Token 4098e2b5038f785028e51a6c40472d7e4158a3c4");
     return new Promise((resolve, reject) => {
       this.http.post(this.login, data)
         .subscribe(res => {

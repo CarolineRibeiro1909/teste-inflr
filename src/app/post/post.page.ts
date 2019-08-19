@@ -16,11 +16,11 @@ export class PostPage {
   shortcontent: string;
   content: string;
   username: string;
+  toast: any;
 
 
 
-
-  constructor(public api: ApiService, private toastCtrl: ToastController, public user: UserService) { }
+  constructor(public api: ApiService, public toastCtrl: ToastController, public user: UserService) { }
 
   ionViewDidEnter() {
     this.getArticles();
@@ -43,15 +43,20 @@ export class PostPage {
   save() {
     const data = { "title": this.title, "short_content": this.shortcontent, "content": this.content };
     this.api.postFeed(data).then((result) => {
-      const toast = this.toastCtrl.create({ message: 'Post criado com sucesso.', duration: 1000 });
-      toast.present(toast);
-    })
-      .catch(() => {
-        const toast = this.toastCtrl.create({ message: 'Erro ao enviar post.', duration: 1000 });
-        toast.present(toast);
+      this.toast = this.toastCtrl.create({
+        message: 'Post criado com sucesso.',
+        duration: 2000
+      }).then((toastData) => {
+        toastData.present();
       });
+    }).catch((err) => {
+      this.toast = this.toastCtrl.create({
+        message: 'Erro ao tentar criar novo post.' + err,
+        duration: 2000
+      }).then((toastData) => {
+        toastData.present();
+      });
+    }
+    );
   }
-
-
-
 }

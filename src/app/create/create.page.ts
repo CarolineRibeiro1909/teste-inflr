@@ -14,8 +14,9 @@ export class CreatePage {
   lastname: string;
   username: string;
   password: number;
+  toast: any;
 
-  constructor(public api: ApiService, private toastCtrl: ToastController) { }
+  constructor(public api: ApiService, public toastCtrl: ToastController) { }
 
 
   createUser() {
@@ -23,17 +24,23 @@ export class CreatePage {
       "first_name": this.firstname, "last_name": this.lastname, "username": this.username,
       "password": this.password
     };
-    console.log('teste' + data)
     this.api.postAccount(data).then((result) => {
-      let toast = this.toastCtrl.create({ message: 'Usuário cadastrado com sucesso.', duration: 3000 });
-      toast.present();
-    })
-      .catch(() => {
-        const toast = this.toastCtrl.create({ message: 'Erro ao cadastrar usuário.', duration: 1000 });
-        toast.present(toast);
+      this.toast = this.toastCtrl.create({
+        message: 'Usuário criado com sucesso.',
+        duration: 2000
+      }).then((toastData) => {
+        toastData.present();
       });
-
-
+    }).catch((err) => {
+      this.toast = this.toastCtrl.create({
+        message: 'Erro ao tentar criar um novo usuario.' + err,
+        duration: 2000
+      }).then((toastData) => {
+        toastData.present();
+      });
+    }
+    );
   }
 }
+
 

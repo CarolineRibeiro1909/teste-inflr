@@ -5,9 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
-  constructor() { }
-
-
   private user: string;
   
 
@@ -18,8 +15,6 @@ export class UserService {
     this.user = username;
   }
   
-
-
   public getUsername() {
     
     return this.user;
